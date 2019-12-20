@@ -16,9 +16,10 @@ class RingBuffer:
         if self.storage.length == self.capacity:
             self.current.value = item
             self.current = self.current.next
-            return
+
         #if not add to tail
-        self.storage.add_to_tail(item)
+        else:
+            self.storage.add_to_tail(item)
 
 
     def get(self):

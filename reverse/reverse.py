@@ -52,12 +52,13 @@ class LinkedList:
     prev_node = None
     curr_node = self.head
     while curr_node:
-        print("curr node", curr_node.value)
+        # print("curr node", curr_node.value)
         after_node = curr_node.get_next()
         curr_node.set_next(prev_node)
         prev_node = curr_node
         curr_node = after_node
         #need to move head to end, set while going down the list?
-        self.head = prev_node
+    
+    self.head = prev_node #since last "curr_node" is None, the previous is the node that should be the head
 
     

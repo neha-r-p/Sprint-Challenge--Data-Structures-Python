@@ -9,14 +9,16 @@ class RingBuffer:
 
     def append(self, item):
         #set current to item that is going to be added
-        self.current = item
-        #if ring buffer is full, overwrite the oldest node(tail) and add to front
+        if self.current is None:
+            self.current = self.storage.head
+        # [5,8,7,3]
+        #if ring buffer is full, overwrite the oldest node(head)
         if self.storage.length == self.capacity:
-            self.storage.tail.value = self.current
-            self.storage.move_to_front(self.storage.tail)
+            self.current.value = item
+            self.current = self.current.next
             return
-        #if not add to head
-        self.storage.add_to_head(self.current)
+        #if not add to tail
+        self.storage.add_to_tail(item)
 
 
     def get(self):
@@ -24,6 +26,14 @@ class RingBuffer:
         list_buffer_contents = []
 
         # TODO: Your code here
+        #start at node from tail and append value to list until next is none
+        node = self.storage.head
+        while node:
+            list_buffer_contents.append(node.value)
+            node = node.next
+
+        
+
 
         return list_buffer_contents
 
